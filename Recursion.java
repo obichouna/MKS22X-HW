@@ -9,17 +9,17 @@ public class Recursion{
 			throw new IllegalArgumentException();
 		}else{
 			return helper(n, 1);
+		}
 	}
 	
 	
 	public static double helper(double n, double guess){
 		double betterGuess = (n / guess + guess) / 2;
-		if(closeEnough(betterGuess * betterGuess, n){
+		if(closeEnough(betterGuess * betterGuess, n)){
 			return betterGuess;
 		}
-    	return helper(n, betterGuess);
-		}
-  }
+		return helper(n, betterGuess);
+	}
 	public static boolean closeEnough(double a, double b){
 		return (Math.abs(a - b) < .00000000001);
 	}
