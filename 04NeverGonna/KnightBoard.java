@@ -1,6 +1,6 @@
 public KnightBoard{
   public int[][] board;
-  public int x, y;
+  public int x, y = 0;
   public int rows, cols;
 
   public KnightBoard(int startingRows, int startingCols){
@@ -19,11 +19,9 @@ public KnightBoard{
   }
 
   public boolean solveH(int row, int col, int level){
-    if (board[row][col] != 0){
-      return false;
-    }
-    board[row][col] = level;
-    if ()
+      if (board[row][col] == 0){
+	  board[row][col] = level;
+	  
   }
 
 
