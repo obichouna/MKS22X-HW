@@ -51,9 +51,9 @@ public class KnightBoard{
     }
     return display;
   }
-//  public static void main (String[]args) {
-//    KnightBoard x = new KnightBoard(8, 8);
-//    x.solve();
-//    System.out.println(x);
-//  }
+  public static void main (String[]args) {
+    KnightBoard x = new KnightBoard(7, 7);
+    x.solve();
+    System.out.println(x);
+  }
 }
