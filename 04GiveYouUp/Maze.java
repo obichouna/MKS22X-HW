@@ -4,6 +4,7 @@ import java.io.*;
 public class Maze{
     private char[][]maze;
     private boolean animate;
+    private int startCoordx, startCoordy;
     /*Constructor loads a maze text file, and sets animate to false by default.
       1. The file contains a rectangular ascii maze, made with the following 4 characters:
       '#' - locations that cannot be moved onto
@@ -21,26 +22,25 @@ public class Maze{
         //COMPLETE CONSTRUCTOR
         int rows = 0;
         int cols = 0;
-        int startCoordx, startCoordy;
-        int s;
-        int e;
+        int s = 0;
+        int e = 0;
         int line = 0;
         try {
           Scanner scan = new Scanner(new File(filename));
           while(scan.hasNextLine()){
             String x = scan.nextLine();
             rows++;
-            cols = line.length();
-            for (int i; i < x.length(); i++){
-              if (x.charAt(i) == "E"){
+            cols = x.length();
+            for (int i = 0; i < x.length(); i++){
+              if (x.charAt(i) == 'E'){
                 e += 1;
               }
-              if (x.charAt(i) == "S"){
+              if (x.charAt(i) == 'S'){
                 s += 1;
                 startCoordx = i;
                 startCoordy = line;
               }
-              maze[line][i] = x.charAt()
+              maze[line][i] = x.charAt(i);
             }
             line++;
           }
@@ -49,7 +49,7 @@ public class Maze{
             System.exit(0);
           }
         }
-        catch(FileNotFoundException e){
+        catch(FileNotFoundException f){
           System.out.println("File not located.");
           System.exit(0);
         }
@@ -117,15 +117,15 @@ public class Maze{
             System.out.println("\033[2J\033[1;1H"+this);
             wait(20);
         }
-        if(maze[row][col] == "E"){
+        if(maze[row][col] == 'E'){
           return true;
         }
-        if(maze[row][col] == " "){
-          maze[row][col] = "@";
+        if(maze[row][col] == ' '){
+          maze[row][col] = '@';
           if (solveH(row, col)){
             return true;
           }else{
-            maze[row][col] = " ";
+            maze[row][col] = ' ';
           }
         }
         //COMPLETE SOLVE
@@ -134,7 +134,20 @@ public class Maze{
     }
 
     private boolean solveH(int row, int col){
-      return ((row - 1 >= && solve(row - 1))
+      return ((row - 1 >= 0 && solve(row - 1, col)) ||
+      (col - 1 >= 0 && solve(row, col - 1)) ||
+      (row + 1 < maze.length && solve(row + 1, col)) ||
+      (col + 1 < maze[row].length && solve(row, col + 1)));
     }
 
+    public String toString(){
+      String penguins = "";
+      for (int row = 0; row < maze.length; row++){
+        for (int col = 0; col < maze[0].length; col++){
+          penguins += maze[row][col];
+        }
+        penguins += "\n";
+      }
+      return penguins;
+    }
 }
