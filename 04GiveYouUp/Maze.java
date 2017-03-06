@@ -25,6 +25,7 @@ public class Maze{
         int s = 0;
         int e = 0;
         int line = 0;
+        int temp = 0;
         try {
           Scanner scan = new Scanner(new File(filename));
           while(scan.hasNextLine()){
@@ -40,9 +41,18 @@ public class Maze{
                 startCoordx = i;
                 startCoordy = line;
               }
-              maze[line][i] = x.charAt(i);
+              //maze[line][i] = x.charAt(i);
             }
             line++;
+          }
+          maze = new char[rows][cols];
+          scan = new Scanner(new File(filename));
+          while(scan.hasNextLine()){
+            String y = scan.nextLine();
+            for (int i = 0; i < y.length(); i++){
+              maze[temp][i] = y.charAt(i);
+            }
+            temp++;
           }
           if (e != 1 || s != 1){
             System.out.println("No start or exit.");
