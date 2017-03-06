@@ -132,8 +132,7 @@ public class Maze{
         }
         if(maze[row][col] == ' '){
           maze[row][col] = '@';
-          if (solve(row + 1, col) || solve(row - 1, col) ||
-	      solve(row, col + 1) || solve(row, col - 1)){
+          if (solve(row - 1, col) || solve(row + 1, col) || solve(row, col + 1) || solve(row, col - 1)){
             return true;
           }else{
             maze[row][col] = '.';
@@ -141,8 +140,7 @@ public class Maze{
         }
         //COMPLETE SOLVE
 
-        return false; //so it compiles
-    }
+        
 
     public String toString(){
       String penguins = "";
