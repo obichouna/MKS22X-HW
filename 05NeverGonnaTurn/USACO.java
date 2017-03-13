@@ -88,14 +88,14 @@ public class USACO{
 
    public int silver(String fileName){
      try{
-       Scanner scan = new Scanner(new file(fileName));
+       Scanner scan = new Scanner(new File(fileName));
        row = scan.nextInt();
        col = scan.nextInt();
        time = scan.nextInt();
        scan.nextLine();
        pasture = new int[row][col];
        meme = new int[row][col];
-       temp = row;
+       int temp = row;
        while (temp != 0){
          for (int i = 0; i < row; i++){
            for (int x = 0; x < col; x++){
@@ -120,6 +120,7 @@ public class USACO{
      }
    }
 
+//credit to Adam Abbas for having code that could deal with the IndexOutofBoundsException
    public int paths(int startR, int startC, int endR, int endC){
      pasture[startR][startC] = 1;
      int temp1 = 0;
@@ -143,28 +144,28 @@ public class USACO{
                  meme[i + 1][j] = 0;
                }
              }
-             catch (IndexOutofBoundException e){}
+             catch(IndexOutofBoundsException e){}
                try{
                if (pasture[i - 1][j] != -1){
                  temp2 = pasture[i - 1][j];
                  meme[i - 1][j] = 0;
                }
              }
-             catch (IndexOutofBoundException e){}
+             catch(IndexOutofBoundsException e){}
                try{
                if (pasture[i][j + 1] != -1){
                  temp3 = pasture[i][j + 1];
                  meme[i][j + 1] = 0;
                }
              }
-             catch (IndexOutofBoundException e){}
+             catch(IndexOutofBoundsException e){}
                try{
                if (pasture[i][j - 1] != -1){
                  temp4 = pasture[i][j - 1];
                  meme[i][j - 1] = 0;
                }
              }
-             catch (IndexOutofBoundException e){}
+             catch(IndexOutofBoundsException e){}
            }
            meme[i][j] = temp1 + temp2 + temp3 + temp4;
          }
