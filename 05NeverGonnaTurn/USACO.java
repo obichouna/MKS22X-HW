@@ -5,7 +5,7 @@ import java.util.*;
 public class USACO{
    private int row, col, elev, numStomps, time, R1, R2, C1, C2;
    private int[][] pasture, moves;
-   private int[][][] pastur;
+
 
    public USACO(){}
 
@@ -84,5 +84,42 @@ public class USACO{
            }
        }
        return total;
+   }
+
+   public int silver(String fileName){
+     try{
+       Scanner scan = new Scanner(new file(fileName));
+       row = scan.nextInt();
+       col = scan.nextInt();
+       time = scan.nextInt();
+       scan.nextLine();
+       pasture = new int[row][col];
+       temp = row;
+       while (temp != 0){
+         for (int i = 0; i < row; i++){
+           for (int x = 0; x < col; x++){
+             if (scan.next().equals(".")){
+               pasture[i][x] = 0;
+             }else{
+               pasture[i][x] = -1;
+             }
+           }
+         }
+         scan.nextLine();
+         temp--;
+       }
+      R1 = scan.nextInt() - 1;
+      C1 = scan.nextInt() - 1;
+      R2 = scan.nextInt() - 1;
+      C2 = scan.nextInt() - 1;
+      return paths(R1, C1, R2, C2);
+     }
+     catch(FileNotFoundException e){
+       System.exit(0);
+     }
+   }
+
+   public int paths(int startR, int startC, int endR, int endC){
+     
    }
 }
