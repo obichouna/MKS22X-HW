@@ -1,12 +1,12 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.*;
 
 public class USACO{
    private int row, col, elev, numStomps, time, R1, R2, C1, C2;
    private int[][] pasture, moves, meme;
 
-
+//Thanks to Adam Abbas for being a good partner in the bronze
+//and also I did catch a peek at your code for the silver
    public USACO(){}
 
    public int bronze(String filename){
