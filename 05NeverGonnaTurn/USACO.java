@@ -4,7 +4,7 @@ import java.util.*;
 
 public class USACO{
    private int row, col, elev, numStomps, time, R1, R2, C1, C2;
-   private int[][] pasture, moves;
+   private int[][] pasture, moves, meme;
 
 
    public USACO(){}
@@ -94,6 +94,7 @@ public class USACO{
        time = scan.nextInt();
        scan.nextLine();
        pasture = new int[row][col];
+       meme = new int[row][col];
        temp = row;
        while (temp != 0){
          for (int i = 0; i < row; i++){
@@ -120,6 +121,61 @@ public class USACO{
    }
 
    public int paths(int startR, int startC, int endR, int endC){
-     
+     pasture[startR][startC] = 1;
+     int temp1 = 0;
+     int temp2 = 0;
+     int temp3 = 0;
+     int temp4 = 0;
+     for (int r = 0; r < pasture.length; r++){
+       for (int c = 0; c < pasture[0].length; c++){
+         if (pasture[r][c] == -1){
+           meme[r][c] = -1;
+         }
+       }
+     }
+     while (time != 0){
+       for (int i = 0; i < pasture.length; i++){
+         for (int j = 0; j < pasture[0].length; j++){
+           if (pasture[i][j] != -1){
+             try{
+               if (pasture[i + 1][j] != -1){
+                 temp1 = pasture[i + 1][j];
+                 meme[i + 1][j] = 0;
+               }
+             }
+             catch (IndexOutofBoundException e){}
+               try{
+               if (pasture[i - 1][j] != -1){
+                 temp2 = pasture[i - 1][j];
+                 meme[i - 1][j] = 0;
+               }
+             }
+             catch (IndexOutofBoundException e){}
+               try{
+               if (pasture[i][j + 1] != -1){
+                 temp3 = pasture[i][j + 1];
+                 meme[i][j + 1] = 0;
+               }
+             }
+             catch (IndexOutofBoundException e){}
+               try{
+               if (pasture[i][j - 1] != -1){
+                 temp4 = pasture[i][j - 1];
+                 meme[i][j - 1] = 0;
+               }
+             }
+             catch (IndexOutofBoundException e){}
+           }
+           meme[i][j] = temp1 + temp2 + temp3 + temp4;
+         }
+       }
+       for (int u = 0; u < meme.length; u++){
+         for(int o = 0; o < meme[0].length; o++){
+           pasture[u][o] = meme[u][o];
+         }
+       }
+       time--;
+     }
+     return pasture[endR][endC];
    }
 }
