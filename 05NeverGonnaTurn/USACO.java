@@ -113,11 +113,11 @@ public class USACO{
       C1 = scan.nextInt() - 1;
       R2 = scan.nextInt() - 1;
       C2 = scan.nextInt() - 1;
-      return paths(R1, C1, R2, C2);
      }
      catch(FileNotFoundException e){
        System.exit(0);
      }
+     return paths(R1, C1, R2, C2);
    }
 
 //credit to Adam Abbas for having code that could deal with the IndexOutofBoundsException
@@ -144,28 +144,28 @@ public class USACO{
                  meme[i + 1][j] = 0;
                }
              }
-             catch(IndexOutofBoundsException e){}
+             catch(ArrayIndexOutOfBoundsException e){}
                try{
                if (pasture[i - 1][j] != -1){
                  temp2 = pasture[i - 1][j];
                  meme[i - 1][j] = 0;
                }
              }
-             catch(IndexOutofBoundsException e){}
+             catch(ArrayIndexOutOfBoundsException e){}
                try{
                if (pasture[i][j + 1] != -1){
                  temp3 = pasture[i][j + 1];
                  meme[i][j + 1] = 0;
                }
              }
-             catch(IndexOutofBoundsException e){}
+             catch(ArrayIndexOutOfBoundsException e){}
                try{
                if (pasture[i][j - 1] != -1){
                  temp4 = pasture[i][j - 1];
                  meme[i][j - 1] = 0;
                }
              }
-             catch(IndexOutofBoundsException e){}
+             catch(ArrayIndexOutOfBoundsException e){}
            }
            meme[i][j] = temp1 + temp2 + temp3 + temp4;
          }
