@@ -99,7 +99,7 @@ public class USACO{
        while (temp != 0){
          for (int i = 0; i < row; i++){
            for (int x = 0; x < col; x++){
-	      if (scan.next().equals(".")){
+	       if (scan.next().equals(){
                pasture[i][x] = 0;
              }else{
                pasture[i][x] = -1;
