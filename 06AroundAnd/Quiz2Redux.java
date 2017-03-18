@@ -22,4 +22,8 @@ public class Quiz2Redux{
         help(words, start + 1, s, x);
       }
     }
+
+    public static void main(String[] args){
+      System.out.println(Quiz2Redux.combinations("abcd"));
+    }
 }
