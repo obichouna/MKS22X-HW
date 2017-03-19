@@ -6,7 +6,6 @@ public class USAClone{
    private int[][] pasture, moves, meme;
 
 //Thanks to Adam Abbas for being a good partner in the bronze
-//and also I did catch a peek at your code for the silver
    public USAClone(){}
 
    public int bronze(String filename){
@@ -99,17 +98,21 @@ public class USAClone{
        int temp = 0;
        while (temp < row){
          String boop = scan.nextLine();
-         String[] soup = boop.split(" ");
-        for (int x = 0; x < soup.length; x++){
-          if (soup[x].equals(".")){
+        // System.out.println(boop.length());
+         //String[] soup = boop.split(" ");
+         //System.out.println(soup.length);
+        for (int x = 0; x < row; x++){
+          if (boop.charAt(x) == '.'){
             pasture[temp][x] = 0;
-          }else if(soup[x].equals("*")){
+          }else if(boop.charAt(x) == '*'){
             pasture[temp][x] = -1;
+          }else{
+            pasture[temp][x] = 5;
           }
         }
          temp++;
        }
-       printTwoDAr(pasture);
+       //printTwoDAr(pasture);
       R1 = scan.nextInt() - 1;
       C1 = scan.nextInt() - 1;
       R2 = scan.nextInt() - 1;
@@ -121,7 +124,6 @@ public class USAClone{
      return paths(R1, C1, R2, C2);
    }
 
-//credit to Adam Abbas for having code that could deal with the IndexOutofBoundsException
    public int paths(int startR, int startC, int endR, int endC){
      pasture[startR][startC] = 1;
      int temp1 = 0;
@@ -135,47 +137,70 @@ public class USAClone{
          }
        }
      }
+     //printTwoDAr(meme);
+     //printTwoDAr(pasture);
      while (time != 0){
        for (int i = 0; i < pasture.length; i++){
          for (int j = 0; j < pasture[0].length; j++){
            if (pasture[i][j] != -1){
+             temp1 = 0;
+             temp2 = 0;
+             temp3 = 0;
+             temp4 = 0;
              try{
                if (pasture[i + 1][j] != -1){
                  temp1 = pasture[i + 1][j];
-                 meme[i + 1][j] = 0;
+                 //meme[i + 1][j] = 0;
                }
              }
              catch(ArrayIndexOutOfBoundsException e){}
                try{
                if (pasture[i - 1][j] != -1){
                  temp2 = pasture[i - 1][j];
-                 meme[i - 1][j] = 0;
+                 //meme[i - 1][j] = 0;
                }
              }
              catch(ArrayIndexOutOfBoundsException e){}
                try{
                if (pasture[i][j + 1] != -1){
                  temp3 = pasture[i][j + 1];
-                 meme[i][j + 1] = 0;
+                 //meme[i][j + 1] = 0;
                }
              }
              catch(ArrayIndexOutOfBoundsException e){}
                try{
                if (pasture[i][j - 1] != -1){
                  temp4 = pasture[i][j - 1];
-                 meme[i][j - 1] = 0;
+                 //meme[i][j - 1] = 0;
                }
              }
              catch(ArrayIndexOutOfBoundsException e){}
+            meme[i][j] = temp1 + temp2 + temp3 + temp4;
+/*
+            try{
+              meme[i + 1][j] = 0;
+            }catch(ArrayIndexOutOfBoundsException e){}
+            try{
+              meme[i - 1][j] = 0;
+            }catch(ArrayIndexOutOfBoundsException e){}
+            try{
+              meme[i][j + 1] = 0;
+            }catch(ArrayIndexOutOfBoundsException e){}
+            try{
+              meme[i][j - 1] = 0;
+            }catch(ArrayIndexOutOfBoundsException e){}
+*/
+            //printTwoDAr(meme);
            }
-           meme[i][j] = temp1 + temp2 + temp3 + temp4;
          }
        }
+       printTwoDAr(meme);
        for (int u = 0; u < meme.length; u++){
          for(int o = 0; o < meme[0].length; o++){
            pasture[u][o] = meme[u][o];
          }
        }
+       //printTwoDAr(pasture);
        time--;
      }
      return pasture[endR][endC];
@@ -194,7 +219,7 @@ public class USAClone{
 
 	public static void main(String[]args){
 		USAClone x = new USAClone();
-		System.out.println(x.silver("ctravel1.in"));
+		System.out.println(x.silver("ctravel2.in"));
 
 	}
 }

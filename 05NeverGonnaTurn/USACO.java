@@ -1,13 +1,13 @@
 import java.io.*;
 import java.util.*;
 
-public class USACO{
+public class USAClone{
    private int row, col, elev, numStomps, time, R1, R2, C1, C2;
    private int[][] pasture, moves, meme;
 
 //Thanks to Adam Abbas for being a good partner in the bronze
 //and also I did catch a peek at your code for the silver
-   public USACO(){}
+   public USAClone(){}
 
    public int bronze(String filename){
        Scanner inf;
@@ -92,23 +92,28 @@ public class USACO{
        row = scan.nextInt();
        col = scan.nextInt();
        time = scan.nextInt();
+       //System.out.println(col);
        scan.nextLine();
        pasture = new int[row][col];
        meme = new int[row][col];
-       int temp = row;
-       while (temp != 0){
-         for (int i = 0; i < row; i++){
-           for (int x = 0; x < col; x++){
-	      if (scan.next().equals(".")){
-               pasture[i][x] = 0;
-             }else{
-               pasture[i][x] = -1;
-             }
-           }
-         }
-         scan.nextLine();
-         temp--;
+       int temp = 0;
+       while (temp < row){
+         String boop = scan.nextLine();
+        // System.out.println(boop.length());
+         //String[] soup = boop.split(" ");
+         //System.out.println(soup.length);
+        for (int x = 0; x < row; x++){
+          if (boop.charAt(x) == '.'){
+            pasture[temp][x] = 0;
+          }else if(boop.charAt(x) == '*'){
+            pasture[temp][x] = -1;
+          }else{
+            pasture[temp][x] = 5;
+          }
+        }
+         temp++;
        }
+       //printTwoDAr(pasture);
       R1 = scan.nextInt() - 1;
       C1 = scan.nextInt() - 1;
       R2 = scan.nextInt() - 1;
@@ -134,55 +139,89 @@ public class USACO{
          }
        }
      }
+     //printTwoDAr(meme);
+     //printTwoDAr(pasture);
      while (time != 0){
        for (int i = 0; i < pasture.length; i++){
          for (int j = 0; j < pasture[0].length; j++){
            if (pasture[i][j] != -1){
+             temp1 = 0;
+             temp2 = 0;
+             temp3 = 0;
+             temp4 = 0;
              try{
                if (pasture[i + 1][j] != -1){
                  temp1 = pasture[i + 1][j];
-                 meme[i + 1][j] = 0;
+                 //meme[i + 1][j] = 0;
                }
              }
              catch(ArrayIndexOutOfBoundsException e){}
                try{
                if (pasture[i - 1][j] != -1){
                  temp2 = pasture[i - 1][j];
-                 meme[i - 1][j] = 0;
+                 //meme[i - 1][j] = 0;
                }
              }
              catch(ArrayIndexOutOfBoundsException e){}
                try{
                if (pasture[i][j + 1] != -1){
                  temp3 = pasture[i][j + 1];
-                 meme[i][j + 1] = 0;
+                 //meme[i][j + 1] = 0;
                }
              }
              catch(ArrayIndexOutOfBoundsException e){}
                try{
                if (pasture[i][j - 1] != -1){
                  temp4 = pasture[i][j - 1];
-                 meme[i][j - 1] = 0;
+                 //meme[i][j - 1] = 0;
                }
              }
              catch(ArrayIndexOutOfBoundsException e){}
+            meme[i][j] = temp1 + temp2 + temp3 + temp4;
+/*
+            try{
+              meme[i + 1][j] = 0;
+            }catch(ArrayIndexOutOfBoundsException e){}
+            try{
+              meme[i - 1][j] = 0;
+            }catch(ArrayIndexOutOfBoundsException e){}
+            try{
+              meme[i][j + 1] = 0;
+            }catch(ArrayIndexOutOfBoundsException e){}
+            try{
+              meme[i][j - 1] = 0;
+            }catch(ArrayIndexOutOfBoundsException e){}
+*/
+            //printTwoDAr(meme);
            }
-           meme[i][j] = temp1 + temp2 + temp3 + temp4;
          }
        }
+       printTwoDAr(meme);
        for (int u = 0; u < meme.length; u++){
          for(int o = 0; o < meme[0].length; o++){
            pasture[u][o] = meme[u][o];
          }
        }
+       //printTwoDAr(pasture);
        time--;
      }
      return pasture[endR][endC];
    }
 
+   private void printTwoDAr(int[][] toPrint){
+    String toRet = "";
+    for(int r = 0; r < toPrint.length;r++){
+        for(int c = 0; c < toPrint[r].length; c++){
+            toRet += toPrint[r][c] + " ";
+        }
+        toRet += "\n";
+    }
+    System.out.println(toRet);
+}
+
 	public static void main(String[]args){
-		USACO x = new USACO();
-		System.out.println(x.silver("ctravel1.in"));
+		USAClone x = new USAClone();
+		System.out.println(x.silver("ctravel2.in"));
 
 	}
 }
