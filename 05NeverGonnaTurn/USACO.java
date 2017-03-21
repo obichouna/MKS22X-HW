@@ -1,13 +1,13 @@
 import java.io.*;
 import java.util.*;
 
-public class USAClone{
+public class USACO{
    private int row, col, elev, numStomps, time, R1, R2, C1, C2;
    private int[][] pasture, moves, meme;
 
 //Thanks to Adam Abbas for being a good partner in the bronze
 //and also I did catch a peek at your code for the silver
-   public USAClone(){}
+   public USACO(){}
 
    public int bronze(String filename){
        Scanner inf;
@@ -196,7 +196,7 @@ public class USAClone{
            }
          }
        }
-       printTwoDAr(meme);
+       // printTwoDAr(meme);
        for (int u = 0; u < meme.length; u++){
          for(int o = 0; o < meme[0].length; o++){
            pasture[u][o] = meme[u][o];
@@ -220,7 +220,7 @@ public class USAClone{
 }
 
 	public static void main(String[]args){
-		USAClone x = new USAClone();
+		USACO x = new USACO();
 		System.out.println(x.silver("ctravel2.in"));
 
 	}
