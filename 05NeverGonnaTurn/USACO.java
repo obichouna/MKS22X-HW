@@ -102,7 +102,7 @@ public class USACO{
         // System.out.println(boop.length());
          //String[] soup = boop.split(" ");
          //System.out.println(soup.length);
-        for (int x = 0; x < row; x++){
+        for (int x = 0; x < col; x++){
           if (boop.charAt(x) == '.'){
             pasture[temp][x] = 0;
           }else if(boop.charAt(x) == '*'){
