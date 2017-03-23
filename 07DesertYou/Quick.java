@@ -3,16 +3,24 @@ public class Quick{
     public Quick(){
     }
 
-    public static part(int[]data, int start, int end){
+    public static int part(int[]data, int start, int end){
 	Random rand = new Random();
-	int pivot = rand.nextInt(start, end);
-	temp = data[data.length - 1];
-	data[data.length - 1] = data[pivot];
-	data[pivot] = temp;
-	for (int i = start; i < end; i--){
-	    if(data[data.length - 1] < data[i]){
-		for (
+	int pivotI = rand.nextInt(end - start) + start;
+	int pivot = data[pivotI];
+        int i = start;
+	int j = end;
+	int lt = start;
+	int gt = end;
+	int temp = data[0];
+	data[0] = pivot;
+	data[pivotI] = temp;
+	while (i <= j){
+	    if (data[i] == pivot){
+		i++;
+	    }else if (data[i] < pivot){
+		
 	    }
+
 	}
 
 
@@ -20,6 +28,8 @@ public class Quick{
 
 
     }
+
+    public static swap(
 
 
 
