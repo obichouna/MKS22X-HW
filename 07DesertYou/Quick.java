@@ -14,11 +14,20 @@ public class Quick{
 	int temp = data[0];
 	data[0] = pivot;
 	data[pivotI] = temp;
-	while (i <= j){
+	while (i <= gt){
 	    if (data[i] == pivot){
 		i++;
 	    }else if (data[i] < pivot){
-		
+		temp = data[lt];
+		data[lt] = data[i];
+		data[i] = temp;
+		i++;
+		lt++;
+	    }else{
+		temp = data[gt];
+		data[gt] = data[i];
+		data[i] = temp;
+		gt--;
 	    }
 
 	}
@@ -29,7 +38,6 @@ public class Quick{
 
     }
 
-    public static swap(
 
 
 
