@@ -6,7 +6,7 @@ public class MyLinkedList{
 	size = 0;
     }
 
-   
+
     public int size(){
 	//	LNode current = start;
 	//	while (current.next() != null){
@@ -22,6 +22,15 @@ public class MyLinkedList{
 	    size += 1;
 	    return true;
 	}
+  LNode created = new LNode();
+  created.value = value;
+  LNode current = start;
+  while (current.next() != null){
+    current = current.next();
+  }
+  current.next = created;
+  size += 1;
+
 
     }
 
