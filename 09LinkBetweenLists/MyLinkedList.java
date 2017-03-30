@@ -19,6 +19,7 @@ public class MyLinkedList{
     public boolean add(int value){
 	if (size ==  0){
 	    start.value = value;
+	    start.next = null;
 	    size += 1;
 	    return true;
 	}
@@ -31,6 +32,7 @@ public class MyLinkedList{
   current.next = created;
   size += 1;
   current.value = value;
+  current.next = null;
   return true;
     }
 
@@ -51,7 +53,12 @@ private class LNode{
     private int value;
     private LNode next;
 
+    public LNode(){
+    }
 
+    public LNode(int x){
+	value = x;
+    }
 
 }
 
