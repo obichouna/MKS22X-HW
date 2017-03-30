@@ -30,11 +30,21 @@ public class MyLinkedList{
   }
   current.next = created;
   size += 1;
-
-
+  current.value = value;
     }
 
-
+    public String toString(MyLinkedList x){
+      String boop = "[";
+      LNode current = start;
+      int temp = size;
+      while (temp != 0){
+        boop += Integer.toString(current.value);
+        current = current.next;
+        temp--;
+      }
+      boop += "]";
+      return boop;
+    }
 }
 
 private class LNode{
