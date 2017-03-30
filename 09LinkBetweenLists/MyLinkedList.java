@@ -25,12 +25,13 @@ public class MyLinkedList{
   LNode created = new LNode();
   created.value = value;
   LNode current = start;
-  while (current.next() != null){
-    current = current.next();
+  while (current.next != null){
+    current = current.next;
   }
   current.next = created;
   size += 1;
   current.value = value;
+  return true;
     }
 
     public String toString(MyLinkedList x){
@@ -45,12 +46,13 @@ public class MyLinkedList{
       boop += "]";
       return boop;
     }
-}
 
 private class LNode{
     private int value;
     private LNode next;
 
 
+
+}
 
 }
