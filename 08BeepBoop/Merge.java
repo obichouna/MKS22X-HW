@@ -32,8 +32,39 @@ public class Merge{
 
   public static void merge(int[] data, int[] part1, int[] part2){
     if (part1.length + part2.length == data.length){
-      
+      return;
     }
-  }
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    while (i < part1.length && j < part2.length){
+     if (part1[i] < part2[j])
+     {
+         data[k] = part1[i];
+         i++;
+     }
+     else
+     {
+         data[k] = part2[j];
+         j++;
+     }
+     k++;
+ }
+
+ while (i < part1.length)
+ {
+     data[k] = part1[i];
+     i++;
+     k++;
+ }
+
+ while (j < part2.length)
+ {
+     data[k] = part2[j];
+     j++;
+     k++;
+ }
+
+}
 
 }
