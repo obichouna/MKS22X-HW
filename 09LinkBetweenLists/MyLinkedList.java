@@ -1,5 +1,6 @@
 public class MyLinkedList{
     private LNode start;
+    private LNode end;
     private int size;
 
     public MyLinkedList(){
@@ -8,40 +9,38 @@ public class MyLinkedList{
 
 
     public int size(){
-	//	LNode current = start;
-	//	while (current.next() != null){
-	//	    size += 1;
-	//	    current = current.next;
-	//	}
 	return size;
     }
 
     public boolean add(int value){
 	if (size ==  0){
-	    start.value = value;
-	    start.next = null;
+	    start = new LNode(value);
+	    end = new LNode(value);
 	    size += 1;
 	    return true;
 	}
-  LNode created = new LNode();
-  created.value = value;
-  LNode current = start;
-  while (current.next != null){
-    current = current.next;
-  }
-  current.next = created;
-  size += 1;
-  current.value = value;
-  current.next = null;
-  return true;
+	LNode created = new LNode(value);
+	LNode current = start;
+	while (current.next != null){
+	    current = current.next;
+	}
+	created.prev = current;
+	current.next = created;
+	size += 1;
+	return true;	
     }
 
-    public String toString(MyLinkedList x){
+    private LNode getNode(int index){
+	if (size - index < size / 2){
+
+    }
+
+    public String toString(){
       String boop = "[";
       LNode current = start;
       int temp = size;
       while (temp != 0){
-        boop += Integer.toString(current.value);
+        boop += Integer.toString(current.value) + ", ";
         current = current.next;
         temp--;
       }
@@ -52,14 +51,24 @@ public class MyLinkedList{
 private class LNode{
     private int value;
     private LNode next;
+    private LNode prev;
 
     public LNode(){
     }
 
     public LNode(int x){
 	value = x;
+	next = null;
+	prev = null;
     }
 
 }
 
+
+    public static void main(String[] args){
+	MyLinkedList x = new MyLinkedList();
+	x.add(29);
+	x.add(2);
+	System.out.println(x.toString());
+    }
 }
