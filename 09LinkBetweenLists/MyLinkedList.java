@@ -27,13 +27,28 @@ public class MyLinkedList{
 	created.prev = current;
 	current.next = created;
 	size += 1;
-	return true;	
+	return true;
     }
 
     private LNode getNode(int index){
-	if (size - index < size / 2){
-
+	if (index < size / 2){
+    LNode current = start;
+    int temp = index;
+    while (current.next != null && temp > 0){
+      current = current.next;
+      temp--;
     }
+    return current;
+  }
+
+    LNode current = end;
+    int temp = size - index;
+    while (current.prev != null && temp > 0){
+      current = current.prev;
+      temp--;
+    }
+    return current;
+  }
 
     public String toString(){
       String boop = "[";
@@ -47,6 +62,7 @@ public class MyLinkedList{
       boop += "]";
       return boop;
     }
+
 
 private class LNode{
     private int value;
@@ -70,5 +86,6 @@ private class LNode{
 	x.add(29);
 	x.add(2);
 	System.out.println(x.toString());
+  //System.out.println(Integer.toString(getNode(0).value));
     }
 }
