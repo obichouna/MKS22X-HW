@@ -50,6 +50,47 @@ public class MyLinkedList{
     return current;
   }
 
+    private void addAfter(LNode location, LNode adder){
+	if (location.next == null){   //If location = end
+	    adder.next = null;
+	    adder.prev = location;
+	    location.next = adder;
+	}
+	adder.prev = location;
+	adder.next = location.next;
+	location.next.prev = adder;
+	location.next = adder;
+    }
+
+    private void addBefore(LNode location, LNode adder){
+	if (location.prev == null){   //If location = start
+	    adder.prev = null;
+	    adder.next = location;
+	    location.prev = adder;
+	}
+	adder.next = location;
+	adder.prev = location.prev;
+	location.prev.next = adder;
+	location.prev = adder;
+    }
+
+    private void remove(LNode remover){
+	remover.prev.next = remover.next;
+	remover.next.prev = remover.prev;
+	remover.next = null;
+	remover.prev = null;
+    }
+
+    public int get(int index){
+	return getNode(index).value;
+    }
+
+    public int set(int index, int boop){
+	int x = getNode(index).value;
+	getNode(index).value = boop;
+	return x;
+    }
+
     public String toString(){
       String boop = "[";
       LNode current = start;
