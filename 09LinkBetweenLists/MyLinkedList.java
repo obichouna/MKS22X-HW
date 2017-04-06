@@ -55,11 +55,13 @@ public class MyLinkedList{
 	    adder.next = null;
 	    adder.prev = location;
 	    location.next = adder;
+      size += 1;
 	}
 	adder.prev = location;
 	adder.next = location.next;
 	location.next.prev = adder;
 	location.next = adder;
+  size += 1;
     }
 
     private void addBefore(LNode location, LNode adder){
@@ -67,11 +69,13 @@ public class MyLinkedList{
 	    adder.prev = null;
 	    adder.next = location;
 	    location.prev = adder;
+      size += 1;
 	}
 	adder.next = location;
 	adder.prev = location.prev;
 	location.prev.next = adder;
 	location.prev = adder;
+  size += 1;
     }
 
     private void remove(LNode remover){
@@ -79,6 +83,7 @@ public class MyLinkedList{
 	remover.next.prev = remover.prev;
 	remover.next = null;
 	remover.prev = null;
+  size -= 1;
     }
 
     public int get(int index){
@@ -89,6 +94,27 @@ public class MyLinkedList{
 	int x = getNode(index).value;
 	getNode(index).value = boop;
 	return x;
+    }
+
+    public int indexOf(int value){
+      LNode current = start;
+      int temp = 0;
+      while (current.value != value){
+        current = current.next;
+        temp++;
+      }
+      return temp;
+    }
+
+    public int remove(int index){
+      int temp  = getNode(index).value;
+      remove(getNode(index));
+      return temp;
+    }
+
+    public void add(int index, int value){
+      LNode adam = new LNode(value);
+      addAfter(getNode(index - 1), adam);
     }
 
     public String toString(){
@@ -126,6 +152,11 @@ private class LNode{
 	MyLinkedList x = new MyLinkedList();
 	x.add(29);
 	x.add(2);
+  x.add(2, 4);
+  x.add(1, 49);
+  x.add(60);
+  x.add(32);
+  x.add(89);
 	System.out.println(x.toString());
   //System.out.println(Integer.toString(getNode(0).value));
     }
