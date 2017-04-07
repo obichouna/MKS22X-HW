@@ -13,10 +13,13 @@ public class Merge{
     int temp = 0;
     while(temp < left.length){
       left[temp] = data[temp];
+      //System.out.println(toString(left));
+      temp++;
     }
     temp = 0;
     while(temp < right.length){
       right[temp] = data[left.length + temp];
+      temp++;
     }
     mergesort(left);
     mergesort(right);
