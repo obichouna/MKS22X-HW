@@ -122,6 +122,7 @@ public class MyLinkedList{
       LNode current = start;
       int temp = size;
       while (temp != 0){
+	  System.out.println(current.value);
         boop += Integer.toString(current.value) + ", ";
         current = current.next;
         temp--;
@@ -152,7 +153,7 @@ private class LNode{
 	MyLinkedList x = new MyLinkedList();
 	x.add(29);
 	x.add(2);
-  x.add(2, 4);
+	// x.add(2, 4);
   x.add(1, 49);
   x.add(60);
   x.add(32);
