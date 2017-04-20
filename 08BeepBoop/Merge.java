@@ -68,7 +68,7 @@ public static String toString(int[] x){
 public static void main(String[] args){
   int[] data = {2, 5, 3, 23, 11, 37, 25, 9, 85, 20, 74, 19, 38, 58, 67, 38};
   mergesort(data);
-  System.out.println(toString(data));
+  //System.out.println(toString(data));
 }
 
 }

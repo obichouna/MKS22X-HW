@@ -1,4 +1,6 @@
-public class MyLinkedList{
+import java.util.*;
+
+public class MyLinkedList implements Iterable<Integer>{
     private LNode start;
     private LNode end;
     private int size;
@@ -7,6 +9,10 @@ public class MyLinkedList{
 	size = 0;
     }
 
+    public Iterator<Integer> iterator(){
+      MyLinkIterator x = new MyLinkIterator(this);
+      return x;
+    }
 
     public int size(){
 	return size;
@@ -87,10 +93,16 @@ public class MyLinkedList{
     }
 
     public int get(int index){
+      if (index > size - 1){
+        throw new IndexOutOfBoundsException();
+      }
 	return getNode(index).value;
     }
 
     public int set(int index, int boop){
+      if (index > size - 1){
+        throw new IndexOutOfBoundsException();
+      }
 	int x = getNode(index).value;
 	getNode(index).value = boop;
 	return x;
@@ -107,12 +119,18 @@ public class MyLinkedList{
     }
 
     public int remove(int index){
+      if (index > size - 1){
+        throw new IndexOutOfBoundsException();
+      }
       int temp  = getNode(index).value;
       remove(getNode(index));
       return temp;
     }
 
     public void add(int index, int value){
+      if (index > size - 1){
+        throw new IndexOutOfBoundsException();
+      }
       LNode adam = new LNode(value);
       addAfter(getNode(index - 1), adam);
     }
@@ -146,6 +164,32 @@ private class LNode{
 	prev = null;
     }
 
+}
+
+
+public class MyLinkIterator implements Iterator<Integer>{
+  private MyLinkedList beep;
+  private LNode current;
+
+  public MyLinkIterator(MyLinkedList x){
+    current = x.start;
+    beep = x;
+  }
+
+  public boolean hasNext(){
+    if (current.next != null){
+      return true;
+    }
+    return false;
+  }
+
+  public Integer next(){
+    return (current.next.value);
+  }
+
+  public void remove(){
+    throw new UnsupportedOperationException();
+  }
 }
 
 
