@@ -1,18 +1,20 @@
+import java.util.*;
+
 public class Postfix{
 
-  public static int eval(String s){
+  public static Double eval(String s){
     Stack x = new Stack();
     for (int i = 0; i < s.length(); i++){
       if (isOp(s.charAt(i))){
-        String temp1 = x.pop();
-        String temp2 = x.pop();
+	  String temp1 = x.pop().toString();
+	  String temp2 = x.pop().toString();
         x.push(apply(s.substring(i, i + 1), temp1, temp2));
       }else{
-        s.substring(i, i + 1).push();
+	  x.push(s.substring(i, i + 1));
       }
     }
-    String fin = x.peek();
-    return Integer.parseInt(fin);
+    String fin = x.peek().toString();
+    return Double.parseDouble(fin);
   }
 
   private static boolean isOp(char s){
