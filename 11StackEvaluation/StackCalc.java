@@ -3,7 +3,7 @@ import java.util.*;
 public class StackCalc{
 
   public static Double eval(String s){
-    Stack x = new Stack();
+    Stack<String> x = new Stack<String>();
     for (int i = 0; i < s.length(); i++){
       if (isOp(s.charAt(i))){
 	  String temp1 = x.pop().toString();
