@@ -6,12 +6,12 @@ public class StackCalc{
       String[] beep = s.split(" ");
       Stack<String> x = new Stack<String>();
       for (String token: beep){
-	  if (isOP(token)){
+	  if (isOp(token)){
 	  String temp1 = x.pop().toString();
 	  String temp2 = x.pop().toString();
 	  //System.out.println(s.substring(i, i + 1));
 	  //System.out.println(temp1);
-        x.push(apply(token, temp1, temp2));
+        x.push(apply(token, temp2, temp1));
       }else{
 	  // System.out.println(s.substring(i, i + 1));
 	  // System.out.println(x.peek());
@@ -31,13 +31,13 @@ public class StackCalc{
 
   private static String apply(String op, String a, String b){
     if(op.equals("*")){
-        return Integer.toString(Integer.parseInt(a) * Integer.parseInt(b));
+        return Double.toString(Double.parseDouble(a) * Double.parseDouble(b));
     }else if(op.equals("+")){
-        return Integer.toString(Integer.parseInt(a) + Integer.parseInt(b));
+        return Double.toString(Double.parseDouble(a) + Double.parseDouble(b));
     }else if(op.equals("/")){
-        return Integer.toString(Integer.parseInt(a) / Integer.parseInt(b));
+        return Double.toString(Double.parseDouble(a) / Double.parseDouble(b));
     }else if(op.equals("-")){
-        return Integer.toString(Integer.parseInt(a) - Integer.parseInt(b));
+        return Double.toString(Double.parseDouble(a) - Double.parseDouble(b));
     }
     return " ";
   }
