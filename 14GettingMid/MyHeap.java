@@ -1,20 +1,18 @@
 import java.util.*;
 
 public class MyHeap{
-    public String[] heap;
+    public int[] heap;
     private int constant = 1;
     public int size;
 
 
     public MyHeap(){
-	heap = new String[5];
-  heap[0] = "Heap:";
+	heap = new int[5];
 	size = 1;
     }
 
     public MyHeap(boolean type){
-	heap = new String[5];
-  heap[0] = "Heap:";
+	heap = new int[5];
 	if (type){
     constant = 1;
   }else{
@@ -23,8 +21,15 @@ public class MyHeap{
 	size = 1;
     }
 
+    public String toString(){
+        String temp = "";
+        for(int each:heap){
+            temp += each + " ";
+        }
+        return temp;
+}
 
-    public void add(String s){
+    public void add(int s){
       if (size >= heap.length - 1){
         grow();
       }
@@ -33,8 +38,8 @@ public class MyHeap{
       size++;
     }
 
-    public String remove(){
-      String temp = heap[1];
+    public int remove(){
+      int temp = heap[1];
       heap[1] = heap[size - 1];
       pushDown(1);
       size--;
@@ -42,14 +47,14 @@ public class MyHeap{
     }
 
     private void swap(int x, int y){
-      String temp = heap[x];
+      int temp = heap[x];
       heap[x] = heap[y];
       heap[x] = temp;
     }
 
     private void pushUp(){
 	   int parent = size;
-     while (parent > 1 && (heap[parent].compareTo(heap[parent / 2]) * constant) > 0){
+     while (parent > 1 && ((heap[parent] - heap[parent / 2]) * constant) > 0){
       swap(parent, parent / 2);
       parent = parent / 2;
       }
@@ -59,9 +64,9 @@ public class MyHeap{
     private void pushDown(int index){
       int temp = 0;
       while ((2 * index) < size){
-        if ((heap[index].compareTo(heap[index * 2]) * constant) < 1){
+        if (((heap[index] - heap[index * 2]) * constant) < 1){
             temp = index * 2;
-            if((heap[index].compareTo(heap[index * 2 + 1]) * constant) < 1){
+            if(((heap[index] - heap[index * 2 + 1]) * constant) < 1){
             temp += 1;
             }
             swap(index, temp);
@@ -73,14 +78,14 @@ public class MyHeap{
     }
 
     public void grow(){
-      String[] temp = new String[size * 2];
+      int[] temp = new int[size * 2];
       for (int i = 0; i < heap.length; i++){
         temp[i] = heap[i];
       }
       heap = temp;
     }
 
-    public String peek(){
+    public int peek(){
       return heap[1];
     }
 
