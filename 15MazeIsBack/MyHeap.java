@@ -1,18 +1,18 @@
 import java.util.*;
 
 public class MyHeap{
-    public ArrayList<Location> heap;
+    public Location[] heap;
     private int constant = 1;
     public int size;
 
 
     public MyHeap(){
-	heap = new ArrayList<Location>();
+	heap = new Location[5];
 	size = 1;
     }
 
     public MyHeap(boolean type){
-	heap = new ArrayList<Location>();
+	heap = new Location[5];
 	if (type){
     constant = 1;
   }else{
@@ -21,45 +21,50 @@ public class MyHeap{
 	size = 1;
     }
 
+    public String toString(){
+        String temp = "";
+        for(Location each:heap){
+            temp += each + " ";
+        }
+        return temp;
+}
 
     public void add(Location s){
       if (size >= heap.length - 1){
         grow();
       }
-      heap.set(size, s);
-      pushUp();
+      heap[size] = s;
+      pushUp(size);
       size++;
     }
 
     public Location remove(){
-      Location temp = heap.get(1);
-      heap.set(size, heap.get(size - 1));
+      Location temp = heap[1];
+      heap[1] = heap[size - 1];
       pushDown(1);
       size--;
       return temp;
     }
 
     private void swap(int x, int y){
-      String temp = heap[x];
+      Location temp = heap[x];
       heap[x] = heap[y];
       heap[x] = temp;
     }
 
-    private void pushUp(){
-	   int parent = size;
-     while (parent > 1 && (heap[parent].compareTo(heap[parent / 2]) * constant) > 0){
-      swap(parent, parent / 2);
-      parent = parent / 2;
-      }
+    private void pushUp(int index){
+        while(index != 1 && (heap[index].compareTo(heap[index/2]) * constant > 0)){
+            swap(index, index/2);
+            index = index/2;
+        }
     }
-
 
     private void pushDown(int index){
       int temp = 0;
       while ((2 * index) < size){
-        if ((heap[index].compareTo(heap[index * 2]) * constant) < 1){
+        if (((heap[index].compareTo(heap[index * 2])) * constant) < 0){
             temp = index * 2;
-            if((heap[index].compareTo(heap[index * 2 + 1]) * constant) < 1){
+            if((heap[index * 2].compareTo(heap[index * 2 + 1]) * constant) < 0){
             temp += 1;
             }
             swap(index, temp);
@@ -71,14 +76,14 @@ public class MyHeap{
     }
 
     public void grow(){
-      String[] temp = new String[size * 2];
+      Location[] temp = new Location[size * 2];
       for (int i = 0; i < heap.length; i++){
         temp[i] = heap[i];
       }
       heap = temp;
     }
 
-    public String peek(){
+    public Location peek(){
       return heap[1];
     }
 

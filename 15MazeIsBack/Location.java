@@ -4,7 +4,7 @@ public class Location{
     public int distanceS;
     public int distanceG;
     public boolean algo;
-    
+
 
     public Location(int r, int c, Location prev, int distToS, int distToEnd){
 	row = r;
@@ -30,6 +30,6 @@ public class Location{
 	    return (distanceG - other.distanceG);
 	}
     }
-    
-    
+
+
 }
